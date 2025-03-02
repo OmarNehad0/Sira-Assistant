@@ -1,33 +1,38 @@
 import discord
-from discord.ext import commands , tasks
+from discord.ext import commands, tasks
 import os
 from flask import Flask
 from threading import Thread
-from collections import defaultdict
-import json
-import asyncio
-from discord.ui import View, Select, Button
-from discord.ui import Modal, TextInput
-import time
 import logging
-logging.basicConfig(level=logging.INFO)
-logging.basicConfig(level=logging.DEBUG)
-import aiohttp
-import math
-from discord import Interaction, Embed
-from datetime import datetime
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
 from discord import app_commands
-import gspread
-from google.auth.transport.requests import Request
-from google.auth import exceptions
-from google.auth.exceptions import DefaultCredentialsError
-import firebase_admin
-from firebase_admin import credentials, firestore
-import requests
-from bs4 import BeautifulSoup
+import json
+import random
+import asyncio
+from datetime import datetime, timedelta
+from PIL import Image, ImageDraw, ImageFont
+import io
+import math
+import subprocess
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+import discord
+from discord.ext import commands
+import asyncio  # Ensure asyncio is imported
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from playwright.async_api import async_playwright
+import re
+import hashlib
+import aiohttp
+from urllib.parse import urlencode
+from http.cookiejar import CookieJar
+from discord.ui import View, Button, Modal, TextInput
 import pymongo
+import gspread
+from discord import Embed, Interaction
 from pymongo import MongoClient, ReturnDocument
 
 # Define intents
