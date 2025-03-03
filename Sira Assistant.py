@@ -417,7 +417,7 @@ class OrderButton(View):
             await original_channel.send(embed=embed)  # ✅ Send embed only in `/post` channel
 
             # ✅ Send message to `/post` channel pinging the worker & customer
-            claim_message = f"**hello! <@{self.customer_id}>, <@{interaction.user.id}> is your worker for this job. You can put info for him using `!inf`**"
+            claim_message = f"**hello! <@{self.customer_id}>, <@{interaction.user.id}> is your worker for this job.**"
             await original_channel.send(claim_message)
 
         await interaction.response.send_message("Order claimed successfully!", ephemeral=True)
@@ -615,7 +615,7 @@ async def complete(interaction: Interaction, order_id: int):
         embed.add_field(name="👷 Worker", value=f"<@{order['worker']}>", inline=True)
         embed.add_field(name="📌 Customer", value=f"<@{order['customer']}>", inline=True)
         embed.add_field(name="💰 Value", value=f"```{order['value']}M```", inline=True)
-        embed.add_field(name="💵 Worker Payment", value=f"{worker_payment}M", inline=True)
+        embed.add_field(name="💵 Worker Payment", value=f"```{worker_payment}M```", inline=True)
         embed.set_image(url="https://images-ext-1.discordapp.net/external/WulF9MPigkqYWHoVbwjr-R4l_tY6TORf3bdiVgky8Aw/https/i.imgur.com/SLmDM3o.gif?width=904&height=136")
         embed.set_footer(text=f"Order ID: {order_id}", icon_url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
         await original_channel.send(embed=embed)
@@ -629,7 +629,7 @@ async def complete(interaction: Interaction, order_id: int):
         dm_embed.add_field(name="📜 Description", value=order.get("description", "No description provided."), inline=False)
         dm_embed.add_field(name="📌 Customer", value=f"<@{order['customer']}>", inline=True)
         dm_embed.add_field(name="💰 Value", value=f"```{order['value']}M```", inline=True)
-        dm_embed.add_field(name="💵 Your Payment", value=f"{worker_payment}M", inline=True)
+        dm_embed.add_field(name="💵 Your Payment", value=f"```{worker_payment}M```", inline=True)
         dm_embed.set_image(url="https://images-ext-1.discordapp.net/external/K9ebE_6pPb7pyQSMsHq-IbGo64llONZjJF3SJhJ8mfA/https/i.imgur.com/SLmDM3o.mp4")
         dm_embed.set_footer(text=f"Order ID: {order_id}", icon_url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
         await worker.send(embed=dm_embed)
