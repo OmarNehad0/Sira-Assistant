@@ -327,7 +327,7 @@ async def tip(interaction: discord.Interaction, user: discord.Member, value: int
     sender_embed.set_thumbnail(url=interaction.user.avatar.url if interaction.user.avatar else interaction.user.default_avatar.url)
     sender_embed.add_field(name="<:payment:1304496260195029103> Deposit", value=sender_deposit, inline=False)
     sender_embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=sender_wallet_value, inline=False)
-    sender_embed.add_field(name="<:osrsgold:1300535539665207346 Spent", value=sender_spent, inline=False)
+    sender_embed.add_field(name="<:osrsgold:1300535539665207346> Spent", value=sender_spent, inline=False)
     sender_embed.set_footer(text=f"Tip sent to {user.display_name}", icon_url=user.avatar.url)
     sender_embed.set_image(url="https://images-ext-1.discordapp.net/external/K9ebE_6pPb7pyQSMsHq-IbGo64llONZjJF3SJhJ8mfA/https/i.imgur.com/SLmDM3o.mp4")
     # Recipient's wallet embed
@@ -335,7 +335,7 @@ async def tip(interaction: discord.Interaction, user: discord.Member, value: int
     recipient_embed.set_thumbnail(url=user.avatar.url if user.avatar else user.default_avatar.url)
     recipient_embed.add_field(name="<:payment:1304496260195029103> Deposit", value=recipient_deposit, inline=False)
     recipient_embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=recipient_wallet_value, inline=False)
-    recipient_embed.add_field(name="<:osrsgold:1300535539665207346 Spent", value=recipient_spent, inline=False)
+    recipient_embed.add_field(name="<:osrsgold:1300535539665207346> Spent", value=recipient_spent, inline=False)
     recipient_embed.set_footer(text=f"Tip received from {interaction.user.display_name}", icon_url=interaction.user.avatar.url)
     recipient_embed.set_image(url="https://images-ext-1.discordapp.net/external/K9ebE_6pPb7pyQSMsHq-IbGo64llONZjJF3SJhJ8mfA/https/i.imgur.com/SLmDM3o.mp4")
     # Send the tip message publicly
