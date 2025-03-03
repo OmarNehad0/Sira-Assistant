@@ -174,7 +174,7 @@ async def wallet(interaction: discord.Interaction, user: discord.Member = None):
     thumbnail_url = user.avatar.url if user.avatar else default_thumbnail
 
     # Create embed message
-    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xDF99FF)
+    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xdf99ff)
     embed.set_thumbnail(url=thumbnail_url)
     embed.add_field(name="<:payment:1304496260195029103> Deposit", value=f"```💵 {deposit_value}M```", inline=False)
     embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=f"```💰 {wallet_value}M```", inline=False)
