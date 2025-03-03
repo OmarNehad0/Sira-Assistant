@@ -174,7 +174,7 @@ async def wallet(interaction: discord.Interaction, user: discord.Member = None):
     thumbnail_url = user.avatar.url if user.avatar else default_thumbnail
 
     # Create embed message
-    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xFFC0CB)
+    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xDF99FF)
     embed.set_thumbnail(url=thumbnail_url)
     embed.add_field(name="<:payment:1304496260195029103> Deposit", value=f"```💵 {deposit_value}M```", inline=False)
     embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=f"```💰 {wallet_value}M```", inline=False)
@@ -226,13 +226,13 @@ async def wallet_add_remove(interaction: discord.Interaction, user: discord.Memb
     spent_value = updated_wallet.get("spent", 0)
 
     # Embed with modern design
-    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xFFC0CB)
+    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xDF99FF)
     embed.set_thumbnail(url=user.avatar.url if user.avatar else user.default_avatar.url)
 
     embed.add_field(name="<:payment:1304496260195029103> Deposit", value=f"```💵 {deposit_value:,}M```", inline=False)
     embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=f"```💰 {wallet_value:,}M```", inline=False)
     embed.add_field(name="<:osrsgold:1300535539665207346> Spent", value=f"```🛍️ {spent_value:,}M```", inline=False)
-    embed.set_image(url="https://media.discordapp.net/attachments/1332341372333723732/1333038474571284521/avatar11.gif?ex=67977052&is=67961ed2&hm=e48d59d1efb3fcacae515a33dbb6182ef59c0268fba45628dd213c2cc241d66a&=")
+    embed.set_image(url="https://images-ext-1.discordapp.net/external/K9ebE_6pPb7pyQSMsHq-IbGo64llONZjJF3SJhJ8mfA/https/i.imgur.com/SLmDM3o.mp4")
     embed.set_footer(text=f"Requested by {interaction.user.display_name}", icon_url=interaction.user.avatar.url)
     
     await interaction.response.send_message(f"✅ {action.capitalize()}ed {value:,}M.", embed=embed)
@@ -275,7 +275,7 @@ async def deposit(interaction: discord.Interaction, user: discord.Member, action
     spent_value = f"```🛍️ {updated_wallet['spent']:,}M```"
 
     # Create an embed
-    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xFFC0CB)
+    embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xDF99FF)
     embed.set_thumbnail(url=user.avatar.url if user.avatar else user.default_avatar.url)
     embed.add_field(name="<:payment:1304496260195029103> Deposit", value=deposit_value, inline=False)
     embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=wallet_value, inline=False)
@@ -323,7 +323,7 @@ async def tip(interaction: discord.Interaction, user: discord.Member, value: int
     recipient_spent = f"```🛍️ {recipient_wallet['spent']:,}M```"
 
     # Sender's wallet embed
-    sender_embed = discord.Embed(title=f"{interaction.user.display_name}'s Updated Wallet 💳", color=0xFFC0CB)
+    sender_embed = discord.Embed(title=f"{interaction.user.display_name}'s Updated Wallet 💳", color=0xDF99FF)
     sender_embed.set_thumbnail(url=interaction.user.avatar.url if interaction.user.avatar else interaction.user.default_avatar.url)
     sender_embed.add_field(name="<:payment:1304496260195029103> Deposit", value=sender_deposit, inline=False)
     sender_embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=sender_wallet_value, inline=False)
@@ -331,7 +331,7 @@ async def tip(interaction: discord.Interaction, user: discord.Member, value: int
     sender_embed.set_footer(text=f"Tip sent to {user.display_name}", icon_url=user.avatar.url)
     sender_embed.set_image(url="https://images-ext-1.discordapp.net/external/K9ebE_6pPb7pyQSMsHq-IbGo64llONZjJF3SJhJ8mfA/https/i.imgur.com/SLmDM3o.mp4")
     # Recipient's wallet embed
-    recipient_embed = discord.Embed(title=f"{user.display_name}'s Updated Wallet 💳", color=0xFFC0CB)
+    recipient_embed = discord.Embed(title=f"{user.display_name}'s Updated Wallet 💳", color=0xDF99FF)
     recipient_embed.set_thumbnail(url=user.avatar.url if user.avatar else user.default_avatar.url)
     recipient_embed.add_field(name="<:payment:1304496260195029103> Deposit", value=recipient_deposit, inline=False)
     recipient_embed.add_field(name="<:deposit:1304496825260179506> Wallet", value=recipient_wallet_value, inline=False)
@@ -402,7 +402,7 @@ class OrderButton(View):
 
             # ✅ Send "Order Claimed" message only in the `/post` channel
             value = order["value"]
-            embed = discord.Embed(title="🎡 Order Claimed", color=0xFFC0CB)
+            embed = discord.Embed(title="🎡 Order Claimed", color=0xDF99FF)
             embed.set_thumbnail(url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif?ex=67c62fc9&is=67c4de49&hm=029d8a2576b54695a25f40aab66bf43a584eeefba45f3112a8bef5ddf51151f2&=")
             embed.set_author(name="👑 Sira Assistant", icon_url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif?ex=67c62fc9&is=67c4de49&hm=029d8a2576b54695a25f40aab66bf43a584eeefba45f3112a8bef5ddf51151f2&=")
             embed.add_field(name="📜 Description", value=order.get("description", "No description provided."), inline=False)
@@ -487,7 +487,7 @@ async def post(interaction: discord.Interaction, customer: discord.Member, value
     # Determine which role to ping
     role_ping = role1.mention if role1 else (role2.mention if role2 else None)
 
-    embed = discord.Embed(title="New Order", color=0xFFC0CB)
+    embed = discord.Embed(title="New Order", color=0xDF99FF)
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
     embed.set_author(name="🎭 Order Posted", icon_url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
     embed.add_field(name="📜 Description", value=description, inline=False)
@@ -536,7 +536,7 @@ async def set_order(interaction: Interaction, customer: discord.Member, value: i
     original_channel_id = interaction.channel.id  # Save the original posting channel
     helper_id = interaction.user.id  # Store the user who executed the command as the helper
 
-    embed = Embed(title="🛠️ Order Set", color=0xFFC0CB)
+    embed = Embed(title="🛠️ Order Set", color=0xDF99FF)
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif?ex=67c62fc9&is=67c4de49&hm=029d8a2576b54695a25f40aab66bf43a584eeefba45f3112a8bef5ddf51151f2&=")
     embed.set_author(name="🛠️ Order Set", icon_url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif?ex=67c62fc9&is=67c4de49&hm=029d8a2576b54695a25f40aab66bf43a584eeefba45f3112a8bef5ddf51151f2&=")
     embed.add_field(name="📜 Description", value=description, inline=False)
@@ -608,7 +608,7 @@ async def complete(interaction: Interaction, order_id: int):
     # Notify the original channel
     original_channel = bot.get_channel(order["original_channel_id"])
     if original_channel:
-        embed = Embed(title="✅ Order Completed", color=0xFFC0CB)
+        embed = Embed(title="✅ Order Completed", color=0xDF99FF)
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
         embed.set_author(name="Sira Assistant", icon_url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
         embed.add_field(name="📜 Description", value=order.get("description", "No description provided."), inline=False)
@@ -623,7 +623,7 @@ async def complete(interaction: Interaction, order_id: int):
     # DM the worker
     worker = bot.get_user(order["worker"])
     if worker:
-        dm_embed = Embed(title="✅ Order Completed", color=0xFFC0CB)
+        dm_embed = Embed(title="✅ Order Completed", color=0xDF99FF)
         dm_embed.set_thumbnail(url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
         dm_embed.set_author(name="Sira Assistant", icon_url="https://media.discordapp.net/attachments/1345885905373888603/1345888442005061823/BtYzHDW_-_Imgur_-_Copy.gif")
         dm_embed.add_field(name="📜 Description", value=order.get("description", "No description provided."), inline=False)
