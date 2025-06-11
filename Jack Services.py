@@ -57,7 +57,7 @@ db = client['MongoDB']  # Replace with the name of your database
 wallets_collection = db['wallet-pkr']  # Updated collection name
 
 # Allowed roles for commands
-ALLOWED_ROLES = {1300390739800494151, 1339629346721370132, 1300390599857537128}
+ALLOWED_ROLES = {1187451210941337660}
 
 def has_permission(user: discord.Member):
     return any(role.id in ALLOWED_ROLES for role in user.roles)
@@ -65,7 +65,7 @@ def has_permission(user: discord.Member):
 async def log_command(interaction: discord.Interaction, command_name: str, details: str):
     # Mapping of servers to their respective log channels
     LOG_CHANNELS = {
-        1300390555842515026: 1345884559505363066   # Server 1 → Log Channel 1
+        1149324846807920673: 1316039833898192997   # Server 1 → Log Channel 1
     }
 
     for guild_id, channel_id in LOG_CHANNELS.items():
@@ -130,8 +130,8 @@ def update_wallet(user_id, field, value):
 @bot.tree.command(name="wallet", description="Check a user's wallet balance")
 async def wallet(interaction: discord.Interaction, user: discord.Member = None):
     # Define role IDs
-    self_only_roles = {1300392225070649405} 
-    allowed_roles = {1300390739800494151, 1339629346721370132, 1300390599857537128}
+    self_only_roles = {1149324846807920673} 
+    allowed_roles = {1187451210941337660}
 
     # Check if user has permission
     user_roles = {role.id for role in interaction.user.roles}
