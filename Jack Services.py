@@ -34,7 +34,6 @@ import pymongo
 import gspread
 from discord import Embed, Interaction
 from pymongo import MongoClient, ReturnDocument
-
 # Define intents
 intents = discord.Intents.default()
 intents.message_content = True
@@ -44,7 +43,6 @@ intents.members = True
 
 # Create bot instance with intents
 bot = commands.Bot(command_prefix="!", intents=intents)
-
 
 # Connect to MongoDB using the provided URI from Railway
 mongo_uri = os.getenv("MONGO_URI")  # You should set this in your Railway environment variables
@@ -126,6 +124,9 @@ def update_wallet(user_id, field, value):
         upsert=True  # Insert a new document if one doesn't exist
     )
 
+# Format wallet value to remove .0 if it's a whole number
+def format_wallet_value(value):
+    return f"{value:.0f}"  # Format to remove any decimal part
 
 @bot.tree.command(name="wallet", description="Check a user's wallet balance")
 async def wallet(interaction: discord.Interaction, user: discord.Member = None):
@@ -157,6 +158,9 @@ async def wallet(interaction: discord.Interaction, user: discord.Member = None):
     
     wallet_value = wallet_data.get('wallet', 0)
     
+    # Remove .0 if the value is a whole number
+    formatted_wallet_value = format_wallet_value(wallet_value)
+
     # Get user's avatar (fallback to default image)
     default_thumbnail = "https://media.discordapp.net/attachments/1382410526121787403/1382423042189164564/22747b6d-8d9e-4a86-95bb-176489a71ae5.jpg?ex=684b1949&is=6849c7c9&hm=46259c75d2f9986f93ad28af55e130d80631bb9749c46c6e654828ecf75895e1&=&format=webp&width=280&height=280"
     thumbnail_url = user.avatar.url if user.avatar else default_thumbnail
@@ -164,7 +168,7 @@ async def wallet(interaction: discord.Interaction, user: discord.Member = None):
     # Create embed message
     embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xdf99ff)
     embed.set_thumbnail(url=thumbnail_url)
-    embed.add_field(name="Wallet", value=f"```💰 {wallet_value}pkr```", inline=False)
+    embed.add_field(name="Wallet", value=f"```💰 {formatted_wallet_value}pkr```", inline=False)
 
     # Ensure requester avatar exists
     requester_avatar = interaction.user.avatar.url if interaction.user.avatar else default_thumbnail
@@ -204,11 +208,14 @@ async def wallet_add_remove(interaction: discord.Interaction, user: discord.Memb
     updated_wallet = get_wallet(user_id) or {"wallet": 0}
     wallet_value = updated_wallet.get("wallet", 0)
 
+    # Format wallet value to remove .0
+    formatted_wallet_value = format_wallet_value(wallet_value)
+
     # Embed with modern design
     embed = discord.Embed(title=f"{user.display_name}'s Wallet 💳", color=0xDF99FF)
     embed.set_thumbnail(url=user.avatar.url if user.avatar else user.default_avatar.url)
 
-    embed.add_field(name="Wallet", value=f"```💰 {wallet_value:,}pkr```", inline=False)
+    embed.add_field(name="Wallet", value=f"```💰 {formatted_wallet_value}pkr```", inline=False)
     embed.set_footer(text=f"Requested by {interaction.user.display_name}", icon_url=interaction.user.avatar.url)
     
     await interaction.response.send_message(f"✅ {action.capitalize()}ed {value:,}pkr.", embed=embed)
@@ -269,5 +276,6 @@ async def test(ctx):
 @bot.command()
 async def ping(ctx):
     await ctx.send("Pong!")
+
 # Run the bot with the token
 bot.run(token)
